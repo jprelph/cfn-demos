@@ -1,0 +1,44 @@
+---
+  AWSTemplateFormatVersion: "2010-09-09"
+  Description: "Create an EC2 Instance and Security Group"
+
+  Parameters:
+    KeyName:
+      Description: "Existing Key Pair Name"
+      Type: AWS::EC2::KeyPair::KeyName
+      ConstraintDescription: "Must be the name of an existing Key Pair"
+    InstanceType:
+      Description: "Instance Type"
+      Type: String
+      Default: "t3.small"
+      AllowedValues: [t2.nano, t2.micro, t3.small, t3.medium]
+    LatestAmiId:
+      Type: AWS::EC2::Image::Id
+      Default: "ami-047bb4163c506cd98"
+
+  Resources:
+    EC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+        InstanceType:
+          Ref: "InstanceType"
+        SecurityGroupIds:
+          - 
+            Ref: "InstanceSecurityGroup"
+        KeyName:
+          Ref: "KeyName"
+        ImageId:
+          Ref: "LatestAmiId"
+        SubnetId: "subnet-0ddd5c04486825854"
+
+    InstanceSecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: "Enable SSH Access"
+        GroupName: "CFN SSH"
+        VpcId: "vpc-0fb7fa6c01ca01f82"
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: "0.0.0.0/0"
