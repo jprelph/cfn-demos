@@ -14,7 +14,7 @@
       AllowedValues: [t2.nano, t2.micro, t3.small, t3.medium]
     LatestAmiId:
       Type: AWS::EC2::Image::Id
-      Default: "ami-047bb4163c506cd98"
+      Default: "ami-00a845a11b3d1f308"
 
   Resources:
     InstanceSecurityGroup:
