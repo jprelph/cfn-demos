@@ -15,7 +15,7 @@
     LatestAmiId:
       Type: AWS::EC2::Image::Id
       Default: "ami-047bb4163c506cd98"
-
+ 
   Resources:
     EC2Instance:
       Type: AWS::EC2::Instance
@@ -29,14 +29,16 @@
           Ref: "KeyName"
         ImageId:
           Ref: "LatestAmiId"
-        SubnetId: "subnet-0ddd5c04486825854"
+        SubnetId:
+          Fn::ImportValue: "cfn-vpc-2-PublicSubnet0"
 
     InstanceSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
         GroupDescription: "Enable SSH Access"
         GroupName: "CFN SSH"
-        VpcId: "vpc-0fb7fa6c01ca01f82"
+        VpcId:
+          Fn::ImportValue: "cfn-vpc-2-VPCID"
         SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22

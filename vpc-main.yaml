@@ -150,3 +150,39 @@
           Ref: "PublicSubnet1"
         RouteTableId:
           Ref: "PublicRouteTable"
+  Outputs:
+    VpcId:
+      Description: "VPC ID"
+      Value:
+        Ref: "VPC"
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-VPCID"
+    PublicSubnet0:
+      Description: "Public Subnet 0"
+      Value:
+        Ref: "PublicSubnet0"
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-PublicSubnet0" 
+    PublicSubnet1:
+      Description: "Public Subnet 1"
+      Value:
+        Ref: "PublicSubnet1"
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-PublicSubnet1" 
+    PrivateSubnet0:
+      Description: "Private Subnet 0"
+      Value:
+        Ref: "PrivateSubnet0"
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-PrivateSubnet0" 
+    PrivateSubnet1:
+      Description: "Private Subnet 1"
+      Value:
+        Ref: "PrivateSubnet1"
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-PrivateSubnet1" 

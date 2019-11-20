@@ -10,8 +10,8 @@
     InstanceType:
       Description: "Instance Type"
       Type: String
-      Default: "t3.small"
-      AllowedValues: [t2.nano, t2.micro, t3.small, t3.medium]
+      Default: "t3.nano"
+      AllowedValues: [t3.nano, t3.micro, t3.small, t3.medium]
     LatestAmiId:
       Type: AWS::EC2::Image::Id
       Default: "ami-00a845a11b3d1f308"
@@ -21,7 +21,7 @@
       Type: AWS::EC2::SecurityGroup
       Properties:
         GroupDescription: "Enable SSH Access"
-        GroupName: "CFN SSH"
+        GroupName: "CFN ASG SSH"
         VpcId: "vpc-0fb7fa6c01ca01f82"
         SecurityGroupIngress:
         - IpProtocol: tcp
@@ -47,6 +47,6 @@
       Properties:
         LaunchConfigurationName:
           Ref: LaunchConfiguration
-        MinSize: '3'
-        MaxSize: '3'
+        MinSize: '27'
+        MaxSize: '27'
         VPCZoneIdentifier: ["subnet-0ddd5c04486825854", "subnet-03c1e81a45ba28028"]
